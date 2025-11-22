@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scumner.World</title>
+    <title>Safari.World</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../api/fonts/typetoday/css.css" />
     <link rel="stylesheet" href="../api/fonts/webtype/css.css" />
+
 </head>
 
-<body>
+<body style="overscroll-behavior-x: auto;">
     <!-- Header / Menubar -->
     <header class="menubar" role="banner">
         <div class="menubar__container">
             <div class="menubar-logo">
                 <div class="icon__image">
-                    <img src="assets/logo.svg" alt="Scumner Logo" />
+                    <img src="assets/safari-logo.png" alt="Safari Logo">
                 </div>
             </div>
-            <span class="menubar__name">Summer Howells ($CUMNER)</span>
+
             <nav class="menubar__links" role="navigation" aria-label="Main navigation">
                 <a href="#" class="menubar__link">Home</a>
                 <a href="#" class="menubar__link" data-window="work-window">Work</a>
@@ -29,10 +30,11 @@
         </div>
         <div class="menubar__icons">
             <div class="menubar__icon">
-                <img src="assets/menu-icon-1.png" alt="Menu option 1" />
+                <img src="assets/menu-icon-1.png" alt="Menu option 1">
             </div>
-            <div class="menubar__icon">
-                <img src="assets/menu-icon-2.png" alt="Menu option 2" />
+            <!-- Menubar icon 2 opens the profile window -->
+            <div class="menubar__icon" data-window="profile" tabindex="0" role="button" aria-label="Profile">
+                <img src="assets/menu-icon-2.png" alt="Profile">
             </div>
         </div>
     </header>
@@ -40,93 +42,21 @@
     <!-- Main Desktop -->
     <main id="desktop" class="desktop" role="main">
         <!-- Desktop Icons -->
-        <section class="icons" aria-label="Desktop icons">
-            <div class="icon" data-window="scumpaint" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-1.png" alt="ScumPaint Icon" />
-                </div>
-                <span class="icon__label">Scumner's <br>Room</span>
-            </div>
-            <div class="icon" data-window="portrait" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-2.png" alt="Portrait Icon" />
-                </div>
-                <span class="icon__label">Contact</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-3.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-4.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-5.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-6.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-7.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-8.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-9.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-10.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-11.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-            <div class="icon" data-window="instagram" tabindex="0">
-                <div class="icon__image">
-                    <img src="assets/icon-12.png" alt="Instagram Icon" />
-                </div>
-                <span class="icon__label">ScumPaint</span>
-            </div>
-        </section>
+        <section id="icons" class="icons" aria-label="Desktop icons"></section>
 
         <!-- Special Corner Icon -->
         <div class="icon icon--corner" data-window="special" tabindex="0">
             <div class="icon__image">
-                <img src="assets/icon-trash.png" alt="Trash Icon" />
+                <img src="assets/icon-trash.png" alt="Trash Icon">
             </div>
-            <span class="icon__label">Built by <br /> Dumpster Dive</span>
+            <span class="icon__label">Built by <br> Dumpster Dive</span>
         </div>
 
         <!-- Work Explorer -->
-        <section class="window" id="work-window" aria-hidden="true">
+        <section class="window" id="work-window" role="dialog" aria-modal="true" aria-labelledby="work-window-title"
+            aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">Work</h2>
+                <h2 class="titlebar__title" id="work-window-title">Work</h2>
                 <div class="titlebar__controls">
                     <button class="titlebar__button min">_</button>
                     <button class="titlebar__button close">X</button>
@@ -137,86 +67,155 @@
                 <!-- Sidebar Navigation -->
                 <aside class="work__sidebar">
                     <ul>
-                        <li data-folder="portrait" class="selected"><img src="assets/icon-6.png" /> Portrait</li>
-                        <li data-folder="landscape"><img src="assets/icon-5.png" /> Landscape</li>
-                        <li data-folder="assisting"><img src="assets/icon-7.png" /> Assisting &lt;3</li>
-                        <li data-folder="brand"><img src="assets/icon-brand.png" /> Brand</li>
-                        <li data-folder="design"><img src="assets/icon-8.png" /> DeSiGn</li>
-                        <li data-folder="musicvidz"><img src="assets/icon-11.png" /> Music Vidz</li>
-                        <li data-folder="hiring"><img src="assets/icon-hiring.png" /> Hiring</li>
-                        <li data-folder="press"><img src="assets/icon-4.png" /> Press</li>
+                        <li data-folder="portrait"><img src="assets/icon-6.png"> Models</li>
+                        <li data-folder="landscape"><img src="assets/icon-5.png"> Collections</li>
+                        <li data-folder="assisting"><img src="assets/icon-7.png"> Assisting &lt;3</li>
+                        <li data-folder="brand"><img src="assets/icon-brand.png"> Brand</li>
+                        <li data-folder="design"><img src="assets/icon-8.png"> DeSiGn</li>
+                        <li data-folder="musicvidz"><img src="assets/icon-11.png"> Music Vidz</li>
+                        <li data-folder="hiring"><img src="assets/icon-hiring.png"> Hiring</li>
+                        <li data-folder="press"><img src="assets/icon-4.png"> Press</li>
                     </ul>
                 </aside>
 
                 <!-- Galleries -->
                 <div class="work__gallery">
-                    <!-- Portrait (default) -->
+                    <!-- Models (default) -->
                     <div id="gallery-portrait" class="gallery-set">
-                        <div class="photo__item"><img src="assets/portrait.png"><label>sh_P0001.jpg</label>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-1.jpg"><label>sh_P0001.jpg</label>
                         </div>
-                        <div class="photo__item"><img src="assets/portrait.png"><label>sh_P0002.jpg</label>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-2.jpg"><label>sh_P0002.jpg</label>
                         </div>
-                        <div class="photo__item"><img src="assets/portrait.png"><label>sh_P0003.jpg</label>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-3.jpg"><label>sh_P0003.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-4.jpg"><label>sh_P0004.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-5.jpg"><label>sh_P0005.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-6.jpg"><label>sh_P0006.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-7.jpg"><label>sh_P0007.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-8.jpg"><label>sh_P0008.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-9.jpg"><label>sh_P0009.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-10.jpg"><label>sh_P00010.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-11.jpg"><label>sh_P00011.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-12.jpg"><label>sh_P00012.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-13.jpg"><label>sh_P00013.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-14.jpg"><label>sh_P00014.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-15.jpg"><label>sh_P00015.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-16.jpg"><label>sh_P00016.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/safari-model-17.jpg"><label>sh_P00017.jpg</label>
                         </div>
                     </div>
 
-                    <!-- Landscape -->
+                    <!-- Collections -->
                     <div id="gallery-landscape" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Landscape+1"><label>landscape_001.jpg</label>
+                        <div class="photo__item">
+                            <img src="assets/collection-1.jpg"><label>landscape_001.jpg</label>
                         </div>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Landscape+2"><label>landscape_002.jpg</label>
+                        <div class="photo__item">
+                            <img src="assets/collection-2.jpg"><label>landscape_002.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/collection-3.jpg"><label>landscape_002.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/collection-4.jpg"><label>landscape_002.jpg</label>
                         </div>
                     </div>
 
                     <!-- Assisting -->
                     <div id="gallery-assisting" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Assisting+1"><label>assist_001.jpg</label></div>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Assisting+2"><label>assist_002.jpg</label></div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Assisting+1"><label>assist_001.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Assisting+2"><label>assist_002.jpg</label>
+                        </div>
                     </div>
 
                     <!-- Brand -->
                     <div id="gallery-brand" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Brand+1"><label>brand_001.jpg</label></div>
+                        <div class="photo__item">
+                            <img src="assets/brand-1.png"><label>brand_001.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/brand-2.jpg"><label>brand_002.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/brand-3.jpg"><label>brand_003.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="assets/brand-4.jpg"><label>brand_004.jpg</label>
+                        </div>
                     </div>
 
                     <!-- Design -->
                     <div id="gallery-design" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Design+1"><label>design_001.jpg</label></div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Design+1"><label>design_001.jpg</label>
+                        </div>
                     </div>
 
                     <!-- Music Vidz -->
                     <div id="gallery-musicvidz" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Music+1"><label>music_001.jpg</label></div>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Music+2"><label>music_002.jpg</label></div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Music+1"><label>music_001.jpg</label>
+                        </div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Music+2"><label>music_002.jpg</label>
+                        </div>
                     </div>
 
                     <!-- Hiring -->
                     <div id="gallery-hiring" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Hiring"><label>hiring.pdf</label></div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Hiring"><label>hiring.pdf</label>
+                        </div>
                     </div>
 
                     <!-- Press -->
                     <div id="gallery-press" class="gallery-set" hidden>
-                        <div class="photo__item"><img
-                                src="https://placehold.co/200x200?text=Press"><label>press_001.jpg</label></div>
+                        <div class="photo__item">
+                            <img src="https://placehold.co/200x200?text=Press"><label>press_001.jpg</label>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Connect Explorer -->
-        <section class="window" id="connect-window" aria-hidden="true">
+        <section class="window" id="connect-window" role="dialog" aria-modal="true"
+            aria-labelledby="connect-window-title" aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">Connect</h2>
+                <h2 class="titlebar__title" id="connect-window-title">Connect</h2>
                 <div class="titlebar__controls">
                     <button class="titlebar__button min">_</button>
                     <button class="titlebar__button close">X</button>
@@ -245,7 +244,7 @@
                 <div class="connect__main">
                     <div class="sending-to">
                         <label for="to">To:</label>
-                        <input id="to" type="text" placeholder="Enter recipient" />
+                        <input id="to" type="text" placeholder="Enter recipient">
                     </div>
 
                     <div class="toolbar">
@@ -254,7 +253,7 @@
                     </div>
 
                     <form class="message-form">
-                        <input type="text" placeholder="Subject" />
+                        <input type="text" placeholder="Subject">
                         <textarea placeholder="Type your message here..."></textarea>
                         <button type="submit" class="send-button">Send</button>
                     </form>
@@ -263,26 +262,29 @@
         </section>
 
         <!-- Retro Popups -->
-        <section class="window popup popup--1" id="popup-love" aria-hidden="true">
+        <section class="window popup popup--1" id="popup-love" role="alertdialog" aria-modal="true"
+            aria-labelledby="popup-love-title" aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">Message important</h2>
-                <button class="titlebar__button close">X</button>
+                <h2 class="titlebar__title" id="popup-love-title">Message important</h2>
+                <button class="titlebar__button close" aria-label="Close message window">X</button>
             </header>
             <div class="window__content wordart--love">Love You &lt;3</div>
         </section>
 
-        <section class="window popup popup--2" id="popup-swag" aria-hidden="true">
+        <section class="window popup popup--2" id="popup-swag" role="alertdialog" aria-modal="true"
+            aria-labelledby="popup-swag-title" aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">SWAG ALERT</h2>
-                <button class="titlebar__button close">X</button>
+                <h2 class="titlebar__title" id="popup-swag-title">SWAG ALERT</h2>
+                <button class="titlebar__button close" aria-label="Close swag window">X</button>
             </header>
             <div class="window__content wordart--swag">SWAG</div>
         </section>
 
-        <section class="window popup popup--3" id="popup-hire" aria-hidden="true">
+        <section class="window popup popup--3" id="popup-hire" role="alertdialog" aria-modal="true"
+            aria-labelledby="popup-hire-title" aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">Hire Me!!</h2>
-                <button class="titlebar__button close">X</button>
+                <h2 class="titlebar__title" id="popup-hire-title">Hire Me!!</h2>
+                <button class="titlebar__button close" aria-label="Close hire window">X</button>
             </header>
             <div class="window__content">
                 <h2>Save My Dreams</h2>
@@ -290,10 +292,11 @@
             </div>
         </section>
 
-        <section class="window popup popup--4" id="popup-compromised" aria-hidden="true">
+        <section class="window popup popup--4" id="popup-compromised" role="alertdialog" aria-modal="true"
+            aria-labelledby="popup-compromised-title" aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">System Warning</h2>
-                <button class="titlebar__button close">X</button>
+                <h2 class="titlebar__title" id="popup-compromised-title">System Warning</h2>
+                <button class="titlebar__button close" aria-label="Close system warning window">X</button>
             </header>
             <div class="window__content">
                 <h2>Compromised by a baddie</h2>
@@ -302,12 +305,13 @@
         </section>
 
         <!-- ScumPaint Window -->
-        <section class="window" id="scumpaint" aria-hidden="true">
+        <section class="window" id="scumpaint" role="dialog" aria-modal="true" aria-labelledby="scumpaint-title"
+            aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">ScumPaint</h2>
+                <h2 class="titlebar__title" id="scumpaint-title">ScumPaint</h2>
                 <div class="titlebar__controls">
-                    <button class="titlebar__button min">_</button>
-                    <button class="titlebar__button close">X</button>
+                    <button class="titlebar__button min" aria-label="Minimize ScumPaint window">_</button>
+                    <button class="titlebar__button close" aria-label="Close ScumPaint window">X</button>
                 </div>
             </header>
             <div class="window__content">
@@ -317,36 +321,190 @@
         </section>
 
         <!-- Portrait Window -->
-        <section class="window" id="portrait" aria-hidden="true">
+        <section class="window" id="portrait" role="dialog" aria-modal="true" aria-labelledby="portrait-title"
+            aria-hidden="true">
             <header class="titlebar">
-                <h2 class="titlebar__title">Portrait</h2>
+                <h2 class="titlebar__title" id="portrait-title">Portrait</h2>
                 <div class="titlebar__controls">
-                    <button class="titlebar__button min">_</button>
-                    <button class="titlebar__button close">X</button>
+                    <button class="titlebar__button min" aria-label="Minimize Portrait window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Portrait window">X</button>
                 </div>
             </header>
             <div class="window__content">
                 <p>Portrait app content goes here.</p>
             </div>
         </section>
+
+        <!-- Scumner's Room Window -->
+        <section class="window" id="scumners-room" role="dialog" aria-modal="true" aria-labelledby="scumners-room-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="scumners-room-title">Safari's Room</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Scumner's Room">_</button>
+                    <button class="titlebar__button close" aria-label="Close Scumner's Room">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <p>Welcome to Scumner's Room — a place for experiments, sketches and random nonsense.</p>
+                <p>Drop content in here or link to other sections.</p>
+            </div>
+        </section>
+
+        <!-- Contact Window -->
+        <section class="window" id="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="contact-title">Contact</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Contact window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Contact window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <h3>Say hi</h3>
+                <p>Email: <a href="mailto:hello@example.com">hello@example.com</a></p>
+                <p>Or use the form below (placeholder):</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your name" />
+                    <input type="email" placeholder="Your email" />
+                    <textarea placeholder="Message"></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Instagram Window -->
+        <section class="window" id="instagram" role="dialog" aria-modal="true" aria-labelledby="instagram-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="instagram-title">Instagram</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Instagram window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Instagram window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <p>This will link out to the Instagram profile.</p>
+                <p><a href="https://www.instagram.com/safariworldwide/" target="_blank" rel="noopener">Open
+                        Instagram</a></p>
+            </div>
+        </section>
+
+        <!-- Journal Window -->
+        <section class="window" id="journal" role="dialog" aria-modal="true" aria-labelledby="journal-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="journal-title">Journal</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Journal window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Journal window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <p>Journal entries will appear here. This is a stub to be replaced with your blog or notes.</p>
+                <ul>
+                    <li><a href="/journal/entry-1.html">Entry 1 — Placeholder</a></li>
+                    <li><a href="/journal/entry-2.html">Entry 2 — Placeholder</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Find Me Window -->
+        <section class="window" id="find-me" role="dialog" aria-modal="true" aria-labelledby="find-me-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="find-me-title">Find Me</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Find Me window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Find Me window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <p>Share links to locations or contact methods here.</p>
+                <p><a href="/find-me/">Open Find Me page</a></p>
+            </div>
+        </section>
+
+        <!-- Press Window -->
+        <section class="window" id="press" role="dialog" aria-modal="true" aria-labelledby="press-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="press-title">Press</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Press window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Press window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <p>Press kit and media assets can be linked or listed here.</p>
+                <ul>
+                    <li><a href="#">Press Release — Placeholder</a></li>
+                    <li><a href="#">High-res images</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Profile Window (opened from menubar icon 2) -->
+        <section class="window" id="profile" role="dialog" aria-modal="true" aria-labelledby="profile-title"
+            aria-hidden="true">
+            <header class="titlebar">
+                <h2 class="titlebar__title" id="profile-title">Profile & Signup</h2>
+                <div class="titlebar__controls">
+                    <button class="titlebar__button min" aria-label="Minimize Profile window">_</button>
+                    <button class="titlebar__button close" aria-label="Close Profile window">X</button>
+                </div>
+            </header>
+            <div class="window__content">
+                <div class="profile__panel" style="display:flex;gap:18px;flex-wrap:wrap;">
+                    <div class="profile__info" style="min-width:200px;">
+                        <img src="assets/icon-folder.png" alt="Profile avatar"
+                            style="width:64px;height:64px;border-radius:8px;" />
+                        <h3>Welcome to Scumner.World</h3>
+                        <p>Create an account to save settings and access member features.</p>
+                    </div>
+
+                    <div class="profile__signup" style="min-width:260px;">
+                        <h4>Sign up (new users)</h4>
+                        <form class="signup-form">
+                            <label style="display:block;margin-bottom:6px;">
+                                <input name="name" type="text" placeholder="Full name" required />
+                            </label>
+                            <label style="display:block;margin-bottom:6px;">
+                                <input name="email" type="email" placeholder="Email" required />
+                            </label>
+                            <label style="display:block;margin-bottom:6px;">
+                                <input name="password" type="password" placeholder="Password" required />
+                            </label>
+                            <label style="display:block;margin-bottom:8px;">
+                                <input name="confirm" type="password" placeholder="Confirm password" required />
+                            </label>
+                            <div style="display:flex;gap:8px;margin-top:8px;">
+                                <button type="submit">Create account</button>
+                                <button type="button" class="titlebar__button close"
+                                    style="padding:6px 10px;">Cancel</button>
+                            </div>
+                        </form>
+                        <p style="margin-top:8px;font-size:13px;color:#666;">Already have an account? <a href="#">Sign
+                                in</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer / Taskbar -->
     <footer class="taskbar" role="contentinfo">
-        <button class="taskbar__start" aria-label="Start menu">
-            <div class="icon__image--start">
-                <img src="assets/start-icon.png" alt="Start menu" />
-            </div>
-        </button>
+        <img class="taskbar__start" src="assets/start-icon.png" alt="Start menu">
         <div class="taskbar__icons">
-            <div class="taskbar__icon"><img src="assets/trey-icon-1.png" alt="Logout" /></div>
-            <div class="taskbar__icon"><img src="assets/trey-icon-2.png" alt="Files" /></div>
-            <div class="taskbar__icon"><img src="assets/trey-icon-3.png" alt="CD" /></div>
+            <div class="taskbar__icon"><img src="assets/trey-icon-1.png" alt="Logout"></div>
+            <div class="taskbar__icon"><img src="assets/trey-icon-2.png" alt="Files"></div>
+            <div class="taskbar__icon"><img src="assets/trey-icon-3.png" alt="CD"></div>
         </div>
         <div class="separator"></div>
         <div class="tray">
-            <div class="tray__icon"><img src="assets/icon-battery.png" alt="Battery status" /></div>
-            <div class="tray__icon"><img src="assets/icon-wifi.png" alt="Wi-Fi status" /></div>
+            <div class="tray__icon"><img src="assets/icon-battery.png" alt="Battery status"></div>
+            <div class="tray__icon"><img src="assets/icon-wifi.png" alt="Wi-Fi status"></div>
             <div id="clock" class="tray__icon tray__clock" aria-label="Current time"></div>
         </div>
     </footer>
@@ -354,35 +512,35 @@
     <!-- Start Menu -->
     <nav class="start-menu" id="start-menu" aria-hidden="true">
         <div class="start-menu__folder photo">
-            <img src="assets/icon-folder.png" alt="User Photo" />
+            <img src="assets/icon-folder.png" alt="User Photo">
             <span class="photo__label">Photo</span>
         </div>
         <div class="start-menu__list">
             <button class="start-menu__item" data-window="portrait">
-                <img src="assets/icon-6.png" class="start-menu__icon" alt="Portrait" />
+                <img src="assets/icon-6.png" class="start-menu__icon" alt="Portrait">
                 <span>Portrait</span>
-                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait" />
+                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait">
             </button>
             <button class="start-menu__item" data-window="instagram">
-                <img src="assets/icon-5.png" class="start-menu__icon" alt="Instagram" />
+                <img src="assets/icon-5.png" class="start-menu__icon" alt="Instagram">
                 <span>Landing</span>
-                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait" />
+                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait">
             </button>
             <button class="start-menu__item" data-window="instagram">
-                <img src="assets/icon-7.png" class="start-menu__icon" alt="Instagram" />
+                <img src="assets/icon-7.png" class="start-menu__icon" alt="Instagram">
                 <span>Assisting</span>
-                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait" />
+                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait">
             </button>
             <button class="start-menu__item" data-window="instagram">
-                <img src="assets/icon-brand.png" class="start-menu__icon" alt="Instagram" />
+                <img src="assets/icon-brand.png" class="start-menu__icon" alt="Instagram">
                 <span>Brand</span>
-                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait" />
+                <img src="assets/right.svg" class="start-menu__icon--arrow" alt="Portrait">
             </button>
         </div>
-
     </nav>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
+
 </body>
 
 </html>

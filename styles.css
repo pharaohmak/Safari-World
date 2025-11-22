@@ -72,6 +72,7 @@
   --icon-size-sm: 32px;
   --icon-size-md: 48px;
   --icon-size-lg: 64px;
+  --icon-size-xl: 80px;
 
   /* ===== TRANSITIONS ===== */
   --transition-fast: 0.12s ease;
@@ -98,12 +99,6 @@
 /* ==========================================================================
    Base Styles & Reset
    ========================================================================== */
-@font-face {
-  font-family: 'Pixelated MS Sans Serif';
-  src: url('https://unpkg.com/ress/dist/ress.min.css');
-  font-weight: 400;
-  font-style: normal;
-}
 
 *,
 *::before,
@@ -176,7 +171,6 @@ img {
 }
 
 .menubar-logo img {
-  width: var(--icon-size-md);
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
@@ -188,10 +182,17 @@ img {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
-.menubar__name {
-  font-weight: var(--font-weight-light);
-  font-size: 20px;
-  margin-right: var(--space-lg);
+.menubar__name img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.menubar__name img:hover {
+  transform: scale(1.1) rotate(-3deg);
+  cursor: pointer;
 }
 
 .menubar__links {
@@ -231,6 +232,7 @@ img {
 .menubar__icon:not(:first-child):hover {
   transform: scale(1.1) rotate(5deg);
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+  cursor: pointer;
 }
 
 /* ---- Desktop Area ---- */
@@ -242,24 +244,27 @@ img {
   bottom: var(--taskbar-height);
   padding: var(--space-xl);
   overflow: hidden;
-  background: url(assets/BASE64_WALLPAPER.png);
-  background-size: cover;
+  background-image: url(assets/BASE64_WALLPAPER.png);
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  transform: scale(1);
   height: calc(100vh - var(--menubar-height) - var(--taskbar-height));
 }
 
 /* ---- Icons Grid ---- */
 .icons {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, auto);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, auto);
   grid-auto-flow: dense;
   justify-items: start;
   padding: var(--space-md);
   gap: var(--space-lg);
   width: min(800px, 30%);
+  image-rendering: pixelated;
 }
 
 /* Icon positioning */
@@ -288,27 +293,43 @@ img {
   background: var(--color-surface);
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  /* tighten the overall spacing so the start button sits closer to icons */
+  gap: var(--space-sm);
+  padding: 0 var(--space-sm);
+  padding-left: 0;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.3);
   z-index: 1300;
 }
 
 .taskbar__start {
-  height: 40px;
+  height: 60px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  top: -10px;
-  right: 10px;
   border: none;
+  padding: 0 var(--space-xs);
+  padding-left: 0;
+  margin-right: var(--space-xs);
+  min-width: 0;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .taskbar__start img {
+  /* keep the start icon a fixed, predictable size so it doesn't create empty space */
+  width: var(--icon-size-x);
+  height: var(--icon-size-sm);
+  object-fit: contain;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-  transition: transform var(--transition-fast);
-  width: 100%;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.taskbar__start:hover,
+.taskbar__start:focus {
+  background-color: rgba(0, 0, 0, 0.04);
+  outline: none;
+  transform: translateY(-1px);
 }
 
 .taskbar__icons {
@@ -429,7 +450,6 @@ img {
 
 .icon:hover,
 .icon:focus {
-  background-color: rgba(255, 255, 255, 0.06);
   transform: translateY(-2px);
   outline: none;
 }
@@ -690,9 +710,11 @@ img {
 }
 
 .start-menu__folder img {
-  width: var(--icon-size-sm);
-  height: var(--icon-size-sm);
+  /* make the folder image larger in the start menu for better visibility */
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .start-menu__item {
@@ -714,9 +736,11 @@ img {
 }
 
 .start-menu__icon {
-  width: var(--icon-size-sm);
-  height: var(--icon-size-sm);
+  /* larger icons inside start-menu items */
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .start-menu__icon--arrow {
@@ -838,15 +862,21 @@ img {
   margin-top: 10px;
 }
 
+.work__gallery {
+  overflow-y: auto;
+}
+
 /* Work Page (File Explorer) - Full Screen */
 #work-window {
   position: fixed;
-  top: var(--menubar-height);
+  /* top: var(--menubar-height); */
+  padding-top: 0;
   left: 0;
   right: 0;
+  top: 0;
   bottom: var(--taskbar-height);
   width: 100%;
-  height: calc(100vh - var(--menubar-height) - var(--taskbar-height));
+  height: 100vh;
   max-width: none;
   min-width: auto;
   border-radius: 0;
@@ -899,47 +929,60 @@ img {
   object-fit: contain;
 }
 
-.work__gallery {
-  flex-grow: 1;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 20px;
-  background: #fff;
-  overflow-y: auto;
+/* Gallery container inside the Work window — use existing .gallery-set
+   flex layout; apply padding and spacing here so galleries look
+   consistent within the work explorer. */
+.work__gallery .gallery-set {
+  padding: 24px;
+  gap: 24px;
+  justify-content: flex-start;
+  align-items: start;
 }
 
 .photo__item {
-  text-align: center;
-  cursor: pointer;
-  transition: transform var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .photo__item:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .photo__item img {
   width: 100%;
-  height: 120px;
+  height: 100%;
   object-fit: cover;
-  border: 1px solid #ddd;
-  border-radius: var(--radius-sm);
+  display: block;
 }
 
 .photo__item label {
-  font-size: 12px;
-  margin-top: 8px;
-  display: block;
-  color: var(--color-text);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo__item:hover label {
+  opacity: 1;
 }
 
 /* Connect Page (Messenger) - Full Screen */
 #connect-window {
   position: fixed;
-  top: var(--menubar-height);
   left: 0;
   right: 0;
+  top: 0;
   bottom: var(--taskbar-height);
   width: 100%;
   height: calc(100vh - var(--menubar-height) - var(--taskbar-height));
@@ -1113,410 +1156,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   /* Responsive grid */
   gap: var(--space-lg);
-}
-
-/* Large Desktops (1200px and above) */
-@media (min-width: 1200px) {
-  .desktop {
-    padding: var(--space-xs);
-  }
-
-  .icons {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
-    width: 100%;
-    height: 100%;
-  }
-
-  .window {
-    width: 700px;
-    max-width: calc(100% - var(--space-6xl));
-  }
-
-  .popup--2 {
-    top: 500px;
-    right: 150px;
-  }
-
-  .menubar__name {
-    font-size: 24px;
-  }
-
-  .menubar__link {
-    font-size: 20px;
-  }
-}
-
-/* Standard Desktops (1024px - 1199px) */
-@media (min-width: 1024px) and (max-width: 1199px) {
-  .icons {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
-    width: 100%;
-    height: 100%;
-  }
-
-  .window {
-    width: 650px;
-    max-width: calc(100% - var(--space-5xl));
-  }
-
-  .popup--3 {
-    bottom: 250px;
-    right: 100px;
-  }
-
-  .popup--4 {
-    top: 700px;
-    left: 300px;
-  }
-
-  .separator {
-    display: none;
-
-  }
-
-  .tray__clock {
-    border: none;
-  }
-}
-
-/* Tablets Landscape (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .icons {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-    width: 100%;
-    height: 100%;
-  }
-
-  .window {
-    width: 90%;
-    max-width: 600px;
-  }
-
-  .popup--3 {
-    bottom: 200px;
-    right: 50px;
-  }
-
-  .popup--4 {
-    top: 750px;
-    left: 200px;
-  }
-
-  .menubar__links {
-    gap: var(--space-md);
-  }
-
-  .menubar__name {
-    font-size: 18px;
-    margin-right: var(--space-md);
-  }
-
-  .menubar__link {
-    font-size: 16px;
-  }
-
-  .desktop {
-    padding: var(--space-lg);
-  }
-
-  .icon__image {
-    width: var(--icon-size-md);
-    height: var(--icon-size-md);
-  }
-
-  .icon__label {
-    font-size: 14px;
-    max-width: 100px;
-  }
-
-  .separator {
-    display: none;
-  }
-}
-
-/* Tablets Portrait & Mobile Landscape (480px - 767px) */
-@media (min-width: 480px) and (max-width: 767px) {
-  .icons {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-    width: 100%;
-    padding: var(--space-sm);
-    height: 100%;
-  }
-
-  .window {
-    width: 95%;
-    left: 2.5%;
-    right: 2.5%;
-    max-width: none;
-  }
-
-  .menubar {
-    padding: 0 var(--space-sm);
-  }
-
-  .menubar__links {
-    display: none;
-  }
-
-  .menubar__name {
-    font-size: 16px;
-    margin-right: var(--space-sm);
-  }
-
-  .menubar__icons {
-    gap: var(--space-sm);
-  }
-
-  .desktop {
-    padding: var(--space-md);
-  }
-
-  .icon {
-    min-width: 60px;
-    min-height: 60px;
-    padding: var(--space-xs);
-  }
-
-  .icon__image {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-    min-width: var(--icon-size-sm);
-    min-height: var(--icon-size-sm);
-  }
-
-  .icon__label {
-    font-size: 12px;
-    max-width: 80px;
-    margin-top: 0.5rem;
-  }
-
-  .taskbar {
-    gap: var(--space-sm);
-    padding: 0 var(--space-sm);
-  }
-
-  .taskbar__start {
-    width: 35px;
-    height: 35px;
-    top: -3px;
-    right: 3px;
-  }
-
-  .tray__clock {
-    padding: 0 8px;
-    font-size: 12px;
-  }
-}
-
-/* Mobile Portrait (320px - 479px) */
-@media (max-width: 479px) {
-  .separator {
-    display: none;
-  }
-
-  .icons {
-    gap: var(--space-md);
-    width: 100%;
-    padding: var(--space-sm);
-    justify-items: center;
-    height: 100%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .window {
-    width: 98%;
-    left: 5%;
-    right: 1%;
-    min-width: 280px;
-  }
-
-  .popup--3 {
-    bottom: 150px;
-    right: 20px;
-  }
-
-  .menubar {
-    padding: 0 var(--space-xs);
-  }
-
-  .menubar__container {
-    gap: var(--space-sm);
-  }
-
-  .menubar__icons,
-  .menubar__name {
-    /* width: 28px;
-    height: 28px; */
-    display: none;
-
-  }
-
-  .menubar__name {
-    font-size: 14px;
-    margin-right: var(--space-xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
-  }
-
-  .menubar__icons {
-    display: none;
-  }
-
-  .menubar__links {
-    gap: var(--space-sm);
-  }
-
-  .desktop {
-    padding: var(--space-sm);
-    height: calc(100vh - 35px - var(--taskbar-height));
-  }
-
-  .icon {
-    min-width: 50px;
-    min-height: 50px;
-    padding: var(--space-xs);
-    width: 100%;
-    max-width: 80px;
-  }
-
-  .icon__image {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    font-size: 16px;
-  }
-
-  .icon__label {
-    font-size: 11px;
-    max-width: 70px;
-    margin-top: 0.3rem;
-    padding: 1px 4px;
-  }
-
-  .icon__arrow {
-    width: 20px;
-    height: 20px;
-    bottom: 40px;
-    left: -2px;
-  }
-
-  .taskbar {
-    height: 35px;
-    gap: var(--space-xs);
-    padding: 0 var(--space-xs);
-  }
-
-  .taskbar__start {
-    height: 30px;
-    top: -2px;
-  }
-
-  .taskbar__start img {
-    height: 70%;
-  }
-
-  .taskbar__icons {
-    display: none;
-  }
-
-  .taskbar__run-btn {
-    height: 24px;
-    padding: 0 var(--space-sm);
-    font-size: 11px;
-  }
-
-  .tray {
-    gap: var(--space-xs);
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .tray__clock {
-    padding: 0 5px;
-    font-size: 11px;
-  }
-
-  .tray__icon {
-    padding: var(--space-xs);
-    font-size: 11px;
-  }
-
-  .titlebar {
-    height: 30px;
-    padding: 0 var(--space-sm);
-  }
-
-  .titlebar__title {
-    font-size: 12px;
-    max-width: 200px;
-  }
-
-  .window__content {
-    padding: var(--space-md);
-  }
-
-  .window__content h2 {
-    font-size: 1.2rem;
-    margin-bottom: var(--space-sm);
-  }
-
-  .window__content li {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-  }
-
-  /* Start menu adjustments */
-  .start-menu {
-    width: 250px;
-    bottom: 35px;
-  }
-
-  .start-menu__item {
-    padding: var(--space-xs) var(--space-sm);
-  }
-
-  .start-menu__item span {
-    font-size: 12px;
-  }
-}
-
-/* Extra Small Devices (below 320px) */
-@media (max-width: 319px) {
-  .menubar__name {
-    display: none;
-  }
-
-  .icon {
-    min-width: 45px;
-    min-height: 45px;
-  }
-
-  .icon__image {
-    width: 35px;
-    height: 35px;
-    min-width: 35px;
-    min-height: 35px;
-    font-size: 14px;
-  }
-
-  .icon__label {
-    font-size: 10px;
-    max-width: 60px;
-  }
-
-  .window {
-    width: 99%;
-    left: 0.5%;
-    right: 0.5%;
-    min-width: 260px;
-  }
 }
 
 /* High DPI/Retina Displays */
@@ -1828,29 +1467,35 @@ body {
   }
 }
 
-/* Additional optimization for all foldable devices */
-@media (max-width: 853px) and (min-height: 1280px) {
 
-  /* Ensure proper spacing around potential hinge areas */
-  .desktop {
-    padding: var(--space-xl);
-  }
-
-
+/* Allow the portrait gallery (and other gallery sets) to scroll when
+   content exceeds the visible area. Use a relative max-height so the
+   gallery fits inside the window and doesn't push other UI elements. */
+.gallery-set {
+  -webkit-overflow-scrolling: touch;
+  padding-right: 6px;
+  /* visual spacing for scrollbar area */
+  align-content: start;
 }
 
-/* High DPI optimization for all devices */
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-  .tray__clock {
-    font-weight: var(--font-weight-semibold);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+/* Responsive: two columns on narrower screens */
+@media (max-width: 900px) {
+  #gallery-portrait {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #gallery-portrait .photo__item img {
+    max-width: 280px;
   }
 }
 
-/* Separator utility */
-.separator {
-  width: 50%;
-  height: 1px;
-  margin: var(--space-md) 0;
+/* Single column on small/mobile screens */
+@media (max-width: 480px) {
+  #gallery-portrait {
+    grid-template-columns: 1fr;
+  }
+
+  #gallery-portrait .photo__item img {
+    max-width: 100%;
+  }
 }

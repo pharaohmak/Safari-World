@@ -1,0 +1,1009 @@
+/* ==========================================================================
+   Device-Specific Responsive Styles
+   ========================================================================== */
+/* Extra Small Devices (below 320px) */
+@media (max-width: 319px) {
+    .menubar__name {
+        display: none;
+    }
+
+    .icon {
+        min-width: 45px;
+        min-height: 45px;
+    }
+
+    .icon__image {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 14px;
+    }
+
+    .icon__label {
+        font-size: 10px;
+        max-width: 60px;
+    }
+
+    .window {
+        width: 99%;
+        left: 0.5%;
+        right: 0.5%;
+        min-width: 260px;
+    }
+}
+
+
+/* Mobile Portrait (320px - 479px) */
+@media (max-width: 479px) {
+    .separator {
+        display: none;
+    }
+
+    .icons {
+        gap: var(--space-md);
+        width: 100%;
+        padding: var(--space-sm);
+        justify-items: center;
+        height: 100%;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .window {
+        width: 98%;
+        left: 5%;
+        right: 1%;
+        min-width: 280px;
+    }
+
+    .popup--3 {
+        bottom: 150px;
+        right: 20px;
+    }
+
+    .menubar {
+        padding: 0 var(--space-xs);
+    }
+
+    .menubar__container {
+        gap: var(--space-sm);
+    }
+
+    .menubar__icons,
+    .menubar__name {
+        /* width: 28px;
+    height: 28px; */
+        display: none;
+
+    }
+
+    .menubar__name {
+        font-size: 14px;
+        margin-right: var(--space-xs);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
+    }
+
+    .menubar__icons {
+        display: none;
+    }
+
+    .menubar__links {
+        gap: var(--space-sm);
+    }
+
+    .desktop {
+        padding: var(--space-sm);
+        height: calc(100vh - 35px - var(--taskbar-height));
+    }
+
+    .icon {
+        min-width: 50px;
+        min-height: 50px;
+        padding: var(--space-xs);
+        width: 100%;
+        max-width: 80px;
+    }
+
+    .icon__image {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 16px;
+    }
+
+    .icon__label {
+        font-size: 11px;
+        max-width: 70px;
+        margin-top: 0.3rem;
+        padding: 1px 4px;
+    }
+
+    .icon__arrow {
+        width: 20px;
+        height: 20px;
+        bottom: 40px;
+        left: -2px;
+    }
+
+    .taskbar {
+        height: 35px;
+        gap: var(--space-xs);
+        padding: 0 var(--space-xs);
+    }
+
+    .taskbar__start {
+        height: 30px;
+        top: -2px;
+    }
+
+    .taskbar__start img {
+        height: 70%;
+    }
+
+    .taskbar__icons {
+        display: none;
+    }
+
+    .taskbar__run-btn {
+        height: 24px;
+        padding: 0 var(--space-sm);
+        font-size: 11px;
+    }
+
+    .tray {
+        gap: var(--space-xs);
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .tray__clock {
+        padding: 0 5px;
+        font-size: 11px;
+    }
+
+    .tray__icon {
+        padding: var(--space-xs);
+        font-size: 11px;
+    }
+
+    .titlebar {
+        height: 30px;
+        padding: 0 var(--space-sm);
+    }
+
+    .titlebar__title {
+        font-size: 12px;
+        max-width: 200px;
+    }
+
+    .window__content {
+        padding: var(--space-md);
+    }
+
+    .window__content h2 {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .window__content li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    /* Start menu adjustments */
+    .start-menu {
+        width: 250px;
+        bottom: 35px;
+    }
+
+    .start-menu__item {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .start-menu__item span {
+        font-size: 12px;
+    }
+}
+
+
+/* Tablets Portrait & Mobile Landscape (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+        width: 100%;
+        padding: var(--space-sm);
+        height: 100%;
+    }
+
+    .window {
+        width: 95%;
+        left: 2.5%;
+        right: 2.5%;
+        max-width: none;
+    }
+
+    .menubar {
+        padding: 0 var(--space-sm);
+    }
+
+    .menubar__links {
+        display: none;
+    }
+
+    .menubar__name {
+        font-size: 16px;
+        margin-right: var(--space-sm);
+    }
+
+    .menubar__icons {
+        gap: var(--space-sm);
+    }
+
+    .desktop {
+        padding: var(--space-md);
+    }
+
+    .icon {
+        min-width: 60px;
+        min-height: 60px;
+        padding: var(--space-xs);
+    }
+
+    .icon__image {
+        width: var(--icon-size-sm);
+        height: var(--icon-size-sm);
+        min-width: var(--icon-size-sm);
+        min-height: var(--icon-size-sm);
+    }
+
+    .icon__label {
+        font-size: 12px;
+        max-width: 80px;
+        margin-top: 0.5rem;
+    }
+
+    .taskbar {
+        gap: var(--space-sm);
+        padding: 0 var(--space-sm);
+    }
+
+    .taskbar__start {
+        width: 35px;
+        height: 35px;
+        top: -3px;
+        right: 3px;
+    }
+
+    .tray__clock {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+}
+
+
+/* Tablets Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+        width: 50%;
+        height: 100%;
+    }
+
+    .window {
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .popup--3 {
+        bottom: 200px;
+        right: 50px;
+    }
+
+    .popup--4 {
+        top: 750px;
+        left: 200px;
+    }
+
+    .menubar__links {
+        gap: var(--space-md);
+    }
+
+    .menubar__link {
+        font-size: 16px;
+    }
+
+    .desktop {
+        padding: var(--space-lg);
+    }
+
+    .icon__image {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+    }
+
+    .icon__label {
+        font-size: 14px;
+        max-width: 100px;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+/* iPad Mini (768 x 1024) */
+@media (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
+    .tray__clock {
+        font-size: 14px;
+        font-weight: var(--font-weight-semibold);
+        padding: 6px 12px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* iPad Air (820 x 1180) */
+@media (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+    .tray__clock {
+        font-size: 15px;
+        font-weight: var(--font-weight-bold);
+        padding: 8px 14px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    }
+}
+
+/* iPad Pro (1024 x 1366) */
+@media (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+    .tray__clock {
+        font-size: 16px;
+        font-weight: var(--font-weight-black);
+        padding: 10px 16px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        color: var(--color-primary);
+    }
+}
+
+/* Surface Pro 7 (912 x 1368) */
+@media (min-width: 912px) and (max-width: 912px) and (min-height: 1368px) and (max-height: 1368px) {
+    .tray__clock {
+        font-size: 15px;
+        font-weight: var(--font-weight-semibold);
+        padding: 9px 15px;
+        background: rgba(255, 255, 255, 0.12);
+        letter-spacing: 0.5px;
+    }
+}
+
+/* Surface Duo (540 x 720) */
+@media (min-width: 540px) and (max-width: 540px) and (min-height: 720px) and (max-height: 720px) {
+
+    /* Fix start button */
+    .taskbar__start {
+        height: 36px;
+        top: -5px;
+        right: 10px;
+        width: auto;
+    }
+
+    /* Style clock */
+    .tray__clock {
+        font-size: 13px;
+        font-weight: var(--font-weight-medium);
+        padding: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.08);
+        margin-right: 5px;
+    }
+
+    .taskbar__icons {
+        display: none;
+    }
+
+    /* Adjust tray spacing for dual-screen optimization */
+    .tray {
+        gap: var(--space-xs);
+        padding: 3px;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+/* Galaxy Z Fold 5 (853 x 1280) */
+@media (min-width: 853px) and (max-width: 853px) and (min-height: 1280px) and (max-height: 1280px) {
+
+    /* Style menubar for foldable */
+    .menubar {
+        height: 45px;
+        padding: 0 var(--space-lg);
+    }
+
+    .menubar__name {
+        font-size: 18px;
+        margin-right: var(--space-xl);
+    }
+
+    .menubar__link {
+        font-size: 16px;
+    }
+
+    .menubar__icon {
+        width: 36px;
+    }
+
+    /* Adjust for foldable hinge area */
+    .desktop {
+        padding: var(--space-xl) var(--space-lg);
+    }
+}
+
+/* Asus Zenbook Fold (853 x 1280) - same dimensions as Galaxy Z Fold 5 */
+@media (min-width: 853px) and (max-width: 853px) and (min-height: 1280px) and (max-height: 1280px) {
+    .tray__clock {
+        font-size: 14px;
+        font-weight: var(--font-weight-semibold);
+        padding: 7px 13px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+    }
+}
+
+/* Nest Hub (1024 x 600) */
+@media (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+
+    /* Style icon sizes */
+    .icon {
+        min-width: 70px;
+        min-height: 70px;
+    }
+
+    .icon__image {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .icon__label {
+        font-size: 13px;
+        max-width: 90px;
+        margin-top: 0.8rem;
+    }
+
+    .taskbar__start {
+        right: 14px;
+    }
+
+    /* Style clock for smart display */
+    .tray__clock {
+        font-size: 16px;
+        font-weight: var(--font-weight-bold);
+        padding: 8px 15px;
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Adjust desktop layout for smart display */
+    .icons {
+        grid-template-columns: repeat(5, 1fr);
+        gap: var(--space-sm);
+        width: 100%;
+        justify-items: center;
+    }
+}
+
+/* Nest Hub Max (1280 x 800) */
+@media (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+
+    /* Style icons for larger smart display */
+    .icon {
+        min-width: 85px;
+        min-height: 85px;
+        padding: var(--space-sm);
+    }
+
+    .icon__image {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+    }
+
+    .icon__label {
+        font-size: 14px;
+        max-width: 100px;
+        margin-top: 1rem;
+        font-weight: var(--font-weight-medium);
+    }
+
+    /* Enhance icon hover effects */
+    .icon:hover {
+        transform: translateY(-3px) scale(1.05);
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Adjust grid layout */
+    .icons {
+        grid-template-columns: repeat(5, 1fr);
+        gap: var(--space-xl);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+/* ==========================================================================
+   Responsive Design - Comprehensive Media Breakpoints
+   ========================================================================== */
+
+/* General Responsive Enhancements */
+body {
+    font-size: 16px;
+    /* Base font size for better readability */
+}
+
+.icon {
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    /* Responsive grid */
+    gap: var(--space-lg);
+}
+
+/* Large Desktops (1200px and above) */
+@media (min-width: 1200px) {
+    .desktop {
+        padding: var(--space-xs);
+    }
+
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        width: 100%;
+        height: 100%;
+    }
+
+    .window {
+        width: 700px;
+        max-width: calc(100% - var(--space-6xl));
+    }
+
+    .popup--2 {
+        top: 500px;
+        right: 150px;
+    }
+}
+
+/* Standard Desktops (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        width: 50%;
+        height: 100%;
+    }
+
+    .window {
+        width: 650px;
+        max-width: calc(100% - var(--space-5xl));
+    }
+
+    .popup--3 {
+        bottom: 250px;
+        right: 100px;
+    }
+
+    .popup--4 {
+        top: 700px;
+        left: 300px;
+    }
+
+    .separator {
+        display: none;
+
+    }
+
+    .tray__clock {
+        border: none;
+    }
+}
+
+/* Tablets Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+        width: 50%;
+        height: 100%;
+    }
+
+    .window {
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .popup--3 {
+        bottom: 200px;
+        right: 50px;
+    }
+
+    .popup--4 {
+        top: 750px;
+        left: 200px;
+    }
+
+    .menubar__links {
+        gap: var(--space-md);
+    }
+
+    .menubar__link {
+        font-size: 16px;
+    }
+
+    .desktop {
+        padding: var(--space-lg);
+    }
+
+    .icon__image {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+    }
+
+    .icon__label {
+        font-size: 14px;
+        max-width: 100px;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+/* Tablets Portrait & Mobile Landscape (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+        width: 100%;
+        padding: var(--space-sm);
+        height: 100%;
+    }
+
+    .window {
+        width: 95%;
+        left: 2.5%;
+        right: 2.5%;
+        max-width: none;
+    }
+
+    .menubar {
+        padding: 0 var(--space-sm);
+    }
+
+    .menubar__links {
+        display: none;
+    }
+
+    .menubar__name {
+        font-size: 16px;
+        margin-right: var(--space-sm);
+    }
+
+    .menubar__icons {
+        gap: var(--space-sm);
+    }
+
+    .desktop {
+        padding: var(--space-md);
+    }
+
+    .icon {
+        min-width: 60px;
+        min-height: 60px;
+        padding: var(--space-xs);
+    }
+
+    .icon__image {
+        width: var(--icon-size-sm);
+        height: var(--icon-size-sm);
+        min-width: var(--icon-size-sm);
+        min-height: var(--icon-size-sm);
+    }
+
+    .icon__label {
+        font-size: 12px;
+        max-width: 80px;
+        margin-top: 0.5rem;
+    }
+
+    .taskbar {
+        gap: var(--space-sm);
+        padding: 0 var(--space-sm);
+    }
+
+    .taskbar__start {
+        width: 35px;
+        height: 35px;
+        top: -3px;
+        right: 3px;
+    }
+
+    .tray__clock {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+}
+
+/* Mobile Portrait (320px - 479px) */
+@media (max-width: 479px) {
+    .separator {
+        display: none;
+    }
+
+    .icons {
+        gap: var(--space-md);
+        width: 100%;
+        padding: var(--space-sm);
+        justify-items: center;
+        height: 100%;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .window {
+        width: 98%;
+        left: 5%;
+        right: 1%;
+        min-width: 280px;
+    }
+
+    .popup--3 {
+        bottom: 150px;
+        right: 20px;
+    }
+
+    .menubar {
+        padding: 0 var(--space-xs);
+    }
+
+    .menubar__container {
+        gap: var(--space-sm);
+    }
+
+    .menubar__icons,
+    .menubar__name {
+        /* width: 28px;
+    height: 28px; */
+        display: none;
+
+    }
+
+    .menubar__name {
+        font-size: 14px;
+        margin-right: var(--space-xs);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
+    }
+
+    .menubar__icons {
+        display: none;
+    }
+
+    .menubar__links {
+        gap: var(--space-sm);
+    }
+
+    .desktop {
+        padding: var(--space-sm);
+        height: calc(100vh - 35px - var(--taskbar-height));
+    }
+
+    .icon {
+        min-width: 50px;
+        min-height: 50px;
+        padding: var(--space-xs);
+        width: 100%;
+        max-width: 80px;
+    }
+
+    .icon__image {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 16px;
+    }
+
+    .icon__label {
+        font-size: 11px;
+        max-width: 70px;
+        margin-top: 0.3rem;
+        padding: 1px 4px;
+    }
+
+    .icon__arrow {
+        width: 20px;
+        height: 20px;
+        bottom: 40px;
+        left: -2px;
+    }
+
+    .taskbar {
+        height: 35px;
+        gap: var(--space-xs);
+        padding: 0 var(--space-xs);
+    }
+
+    .taskbar__start {
+        height: 30px;
+        top: -2px;
+    }
+
+    .taskbar__start img {
+        height: 70%;
+    }
+
+    .taskbar__icons {
+        display: none;
+    }
+
+    .taskbar__run-btn {
+        height: 24px;
+        padding: 0 var(--space-sm);
+        font-size: 11px;
+    }
+
+    .tray {
+        gap: var(--space-xs);
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .tray__clock {
+        padding: 0 5px;
+        font-size: 11px;
+    }
+
+    .tray__icon {
+        padding: var(--space-xs);
+        font-size: 11px;
+    }
+
+    .titlebar {
+        height: 30px;
+        padding: 0 var(--space-sm);
+    }
+
+    .titlebar__title {
+        font-size: 12px;
+        max-width: 200px;
+    }
+
+    .window__content {
+        padding: var(--space-md);
+    }
+
+    .window__content h2 {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .window__content li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    /* Start menu adjustments */
+    .start-menu {
+        width: 250px;
+        bottom: 35px;
+    }
+
+    .start-menu__item {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .start-menu__item span {
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Devices (below 320px) */
+@media (max-width: 319px) {
+    .menubar__name {
+        display: none;
+    }
+
+    .icon {
+        min-width: 45px;
+        min-height: 45px;
+    }
+
+    .icon__image {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 14px;
+    }
+
+    .icon__label {
+        font-size: 10px;
+        max-width: 60px;
+    }
+
+    .window {
+        width: 99%;
+        left: 0.5%;
+        right: 0.5%;
+        min-width: 260px;
+    }
+}
+
+
+/* Standard Desktops (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        width: 50%;
+        height: 100%;
+    }
+
+    .window {
+        width: 650px;
+        max-width: calc(100% - var(--space-5xl));
+    }
+
+    .popup--3 {
+        bottom: 250px;
+        right: 100px;
+    }
+
+    .popup--4 {
+        top: 700px;
+        left: 300px;
+    }
+
+    .separator {
+        display: none;
+
+    }
+
+    .tray__clock {
+        border: none;
+    }
+}
+
+
+/* Large Desktops (1200px and above) */
+@media (min-width: 1200px) {
+    .desktop {
+        padding: var(--space-xs);
+    }
+
+    .icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+        width: 100%;
+        height: 100%;
+    }
+
+    .window {
+        width: 700px;
+        max-width: calc(100% - var(--space-6xl));
+    }
+
+    .popup--2 {
+        top: 500px;
+        right: 150px;
+    }
+}
