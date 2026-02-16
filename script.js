@@ -6,6 +6,7 @@ function init() {
     renderIcons();
     // Initialise clock, windows, explorer, start menu and popups
     initClock();
+    initWindowDragging();
     initWindowEvents();
     initWorkExplorer();
     initStartMenu();
@@ -32,6 +33,23 @@ function bringToFront(win) {
     win.style.zIndex = '100';
 }
 
+function centerWindow(win) {
+    const desktop = document.getElementById('desktop');
+    if (!desktop || !win) return;
+
+    const desktopRect = desktop.getBoundingClientRect();
+    const winRect = win.getBoundingClientRect();
+
+    const left = (desktopRect.width - winRect.width) / 2;
+    const top = Math.max(20, (desktopRect.height - winRect.height) / 2);
+
+    win.style.left = `${left}px`;
+    win.style.top = `${top}px`;
+    win.style.right = 'auto';
+    win.style.marginLeft = '0';
+    win.style.transform = 'none';
+}
+
 function openWindow(id) {
     const win = document.getElementById(id);
     if (win) {
@@ -40,6 +58,10 @@ function openWindow(id) {
         win.style.display = 'flex';
         win.setAttribute('aria-hidden', 'false');
         bringToFront(win);
+        // Center window if it doesn't have a position set
+        if (!win.style.left && !win.style.right) {
+            centerWindow(win);
+        }
         return;
     }
 
@@ -102,6 +124,67 @@ function minimizeWindow(win) {
         win.classList.add('window--open');
         bringToFront(win);
     }
+}
+
+function initWindowDragging() {
+    let isDragging = false;
+    let currentWindow = null;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    document.addEventListener('mousedown', (e) => {
+        const titlebar = e.target.closest('.titlebar');
+        if (!titlebar) return;
+
+        const win = titlebar.closest('.window');
+        if (!win || win.classList.contains('window--minimized')) return;
+
+        // Don't start drag if clicking on buttons
+        if (e.target.closest('.titlebar__button')) return;
+
+        isDragging = true;
+        currentWindow = win;
+        bringToFront(win);
+
+        const rect = win.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        win.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging || !currentWindow) return;
+
+        const desktop = document.getElementById('desktop');
+        const desktopRect = desktop.getBoundingClientRect();
+
+        let newX = e.clientX - offsetX - desktopRect.left;
+        let newY = e.clientY - offsetY - desktopRect.top;
+
+        // Constrain to desktop bounds
+        const winRect = currentWindow.getBoundingClientRect();
+        const maxX = desktopRect.width - winRect.width;
+        const maxY = desktopRect.height - winRect.height;
+
+        newX = Math.max(0, Math.min(newX, maxX));
+        newY = Math.max(0, Math.min(newY, maxY));
+
+        currentWindow.style.left = `${newX}px`;
+        currentWindow.style.top = `${newY}px`;
+        currentWindow.style.right = 'auto';
+        currentWindow.style.marginLeft = '0';
+        currentWindow.style.transform = 'none';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging && currentWindow) {
+            currentWindow.style.cursor = '';
+        }
+        isDragging = false;
+        currentWindow = null;
+    });
 }
 
 function initWindowEvents() {
@@ -226,30 +309,71 @@ function initPopups() {
 }
 
 function initForms() {
+    // Handle signup form
     document.addEventListener('submit', (e) => {
         const form = e.target.closest('.signup-form');
-        if (!form) return;
-        e.preventDefault();
-        const fd = new FormData(form);
-        const name = (fd.get('name') || '').toString().trim();
-        const email = (fd.get('email') || '').toString().trim();
-        const password = (fd.get('password') || '').toString();
-        const confirm = (fd.get('confirm') || '').toString();
-        if (!name || !email || !password || !confirm) {
-            showToast('Please complete all fields');
+        if (form) {
+            e.preventDefault();
+            const fd = new FormData(form);
+            const name = (fd.get('name') || '').toString().trim();
+            const email = (fd.get('email') || '').toString().trim();
+            const password = (fd.get('password') || '').toString();
+            const confirm = (fd.get('confirm') || '').toString();
+            if (!name || !email || !password || !confirm) {
+                showToast('Please complete all fields');
+                return;
+            }
+            if (password !== confirm) {
+                showToast('Passwords do not match');
+                return;
+            }
+            // Placeholder: pretend we sent data to a server
+            console.log('Signup:', { name, email });
+            showToast('Thanks! Check your email to confirm signup');
+            form.reset();
+            // Close the profile window if present
+            const win = form.closest('.window');
+            if (win) closeWindow(win);
             return;
         }
-        if (password !== confirm) {
-            showToast('Passwords do not match');
+
+        // Handle contact form
+        const contactForm = e.target.closest('.contact-form');
+        if (contactForm) {
+            e.preventDefault();
+            const fd = new FormData(contactForm);
+            const name = (fd.get('name') || '').toString().trim();
+            const email = (fd.get('email') || '').toString().trim();
+            const message = (fd.get('message') || '').toString().trim();
+            if (!name || !email || !message) {
+                showToast('Please complete all fields');
+                return;
+            }
+            // Placeholder: pretend we sent data to a server
+            console.log('Contact form:', { name, email, message });
+            showToast('Message sent! Safari will get back to you soon.');
+            contactForm.reset();
             return;
         }
-        // Placeholder: pretend we sent data to a server
-        console.log('Signup:', { name, email });
-        showToast('Thanks! Check your email to confirm signup');
-        form.reset();
-        // Close the profile window if present
-        const win = form.closest('.window');
-        if (win) closeWindow(win);
+
+        // Handle message form in Connect window
+        const messageForm = e.target.closest('.message-form');
+        if (messageForm) {
+            e.preventDefault();
+            const formData = new FormData(messageForm);
+            const to = document.getElementById('to')?.value || '';
+            const subject = messageForm.querySelector('input[type="text"]')?.value || '';
+            const message = messageForm.querySelector('textarea')?.value || '';
+            if (!to || !message) {
+                showToast('Please enter recipient and message');
+                return;
+            }
+            // Placeholder: pretend we sent data to a server
+            console.log('Message:', { to, subject, message });
+            showToast(`Message sent to ${to}!`);
+            messageForm.reset();
+            document.getElementById('to').value = '';
+        }
     });
 }
 

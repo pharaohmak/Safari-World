@@ -318,7 +318,7 @@ img {
 
 .taskbar__start img {
   /* keep the start icon a fixed, predictable size so it doesn't create empty space */
-  width: var(--icon-size-x);
+  width: auto;
   height: var(--icon-size-sm);
   object-fit: contain;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
@@ -539,14 +539,21 @@ img {
   transform: translateY(6px);
   transition: opacity var(--transition-fast), transform var(--transition-fast);
   z-index: 50;
-  top: 10px;
-  left: 35%;
+  top: 10%;
+  left: 50%;
+  margin-left: -310px;
 }
 
 .window--open {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Reset transform when window is being dragged */
+.window[style*="left"] {
+  transform: none;
+  margin-left: 0;
 }
 
 .window--minimized {
@@ -930,13 +937,17 @@ img {
 }
 
 /* Gallery container inside the Work window — use existing .gallery-set
-   flex layout; apply padding and spacing here so galleries look
+   grid layout; apply padding and spacing here so galleries look
    consistent within the work explorer. */
 .work__gallery .gallery-set {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   padding: 24px;
   gap: 24px;
   justify-content: flex-start;
   align-items: start;
+  overflow-y: auto;
+  max-height: calc(100vh - var(--menubar-height) - var(--taskbar-height) - 36px);
 }
 
 .photo__item {
@@ -945,6 +956,8 @@ img {
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  aspect-ratio: 1;
+  min-height: 200px;
 }
 
 .photo__item:hover {
@@ -957,6 +970,7 @@ img {
   height: 100%;
   object-fit: cover;
   display: block;
+  min-height: 200px;
 }
 
 .photo__item label {
@@ -1472,6 +1486,9 @@ body {
    content exceeds the visible area. Use a relative max-height so the
    gallery fits inside the window and doesn't push other UI elements. */
 .gallery-set {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
   -webkit-overflow-scrolling: touch;
   padding-right: 6px;
   /* visual spacing for scrollbar area */

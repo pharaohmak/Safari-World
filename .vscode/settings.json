@@ -2,5 +2,7 @@
     "liveServer.settings.port": 5503,
     "cSpell.words": [
         "scummer"
-    ]
+    ],
+    "snyk.advanced.organization": "fe2b4d14-e45f-452f-b96c-5751d36da6f0",
+    "snyk.advanced.autoSelectOrganization": true
 }

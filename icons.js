@@ -7,7 +7,7 @@ export const icons = [
         name: "Safari's Room",
         img: './assets/icon-1.png',
         label: `Safari's <br> Room`,
-        dataWindow: 'safaris-room'
+        dataWindow: 'scumners-room'
     },
     {
         name: 'Contact',
@@ -25,7 +25,7 @@ export const icons = [
     },
     {
         name: 'Assisting',
-        img: './assets/icon-8.png',
+        img: './assets/icon-7.png',
         label: 'Assisting',
         dataWindow: 'assisting'
 
@@ -34,7 +34,7 @@ export const icons = [
         name: 'Graphic design',
         img: './assets/icon-10.png',
         label: 'graphic design',
-        dataWindow: 'graphic-design'
+        dataWindow: 'design'
 
     },
     {
@@ -58,7 +58,7 @@ export const icons = [
         name: 'Music Vidz',
         img: './assets/icon-11.png',
         label: 'Music Vidz',
-        dataWindow: 'music-vidz'
+        dataWindow: 'musicvidz'
 
     },
     {
